@@ -15,8 +15,10 @@ The function should:
   Example createMenuItem('tacos', 8, 'Lunch') should return {name: 'tacos', price: 8, category: 'Lunch'}
 */
 
-function createMenuItem(/*Your code here*/){
+function createMenuItem(name, price, category){
     /*Your code here*/
+    const menuItems = {name, price, category};
+    return menuItems;
 }
 
 /* 🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀 Task 1b: 🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀
@@ -49,6 +51,14 @@ export const burger = {
   price: 18, 
   category: "Lunch", 
   /*Your code here*/
+  discount: function(status){
+    if(status.includes('teacher') || status.includes('student')){
+      return 18 - (18 * .25);
+    }
+    if(status.includes('public')){
+      return 18 - (18 * .15);
+    }
+  }
 }
 
 
@@ -69,7 +79,7 @@ const reviews = [
 Using the reviews array above:
   1. log only Julius' feedback to the console - no function needed 
 */
-
+console.log(reviews[6]['feedback']);
 
 
 
@@ -86,9 +96,8 @@ Reyna's feedback is missing! Use what you know to do the following: (no function
   1. Add this feedback to Reyna's rating - "this place is chill with really cool people, great for getting work done on weekdays"
   2. log the reviews array to the console to check your work
 */
-
-
-
+reviews.push({name: "Bri", rating: 5, feedback: "So cool!"})
+console.log(reviews);
 
 
 /* 🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀 Task 6: 🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀
@@ -102,8 +111,9 @@ Use the getReviewByIndex function below to do the following:
 */
 
 
-function getReviewByIndex(/*Your code here*/) {
+function getReviewByIndex(arr, num) {
   /*Your code here*/
+  return `${arr[num]['name']} gave the restaurant a ${arr[num]['rating']} star review, and their feedback was: ${arr[num]['feedback']}`
 }
 
 
@@ -121,8 +131,9 @@ Use the getLastReview function below to do the following:
 */
 
 
-function getLastReview(/*Your code here*/) {
+function getLastReview(arr) {
   /*Your code here*/
+  return `${arr[arr.length -1]['name']} gave the restaurant a ${arr[arr.length -1]['rating']} star review, and their feedback was: ${arr[arr.length -1]['feedback']}`
 } 
 
 
@@ -143,8 +154,15 @@ Use the getReviewsByRating function below to do the following:
   ]
 */
 
- function getReviewByRating(/* code here */) {
+ function getReviewByRating(arr, ratingRange) {
     /* code here */
+    const ratingArr = [];
+
+    for(let i = 0; i < arr.length; i++)
+    if(arr[i]['rating'] === ratingRange){
+      ratingArr.push(arr[i])
+    }
+    return ratingArr;
   }
 
   
@@ -161,8 +179,14 @@ Use the getLongReviews function below to do the following:
   ]
 */
 
-function getLongReviews(/* code here */) {
-    /* code here */
+function getLongReviews(arr) {
+  const longReviewsArr = [];
+    for(i=0; i <arr.length; i ++){
+      if (arr[i]['feedback'].length > 15){
+        longReviewsArr.push(arr[i])
+      }
+    }
+    return longReviewsArr;
   }
   
 
@@ -184,9 +208,15 @@ Use the carMaker function below to do the following:
 */
 
 
-function carMaker(/* code here */) {
+function carMaker(odometer) {
     /* code here */
-    
+    const car = {
+      distance: 10,
+      drive: function(distance){
+        return distance + odometer;
+      },
+    }
+    return car;
 }
 
 
